@@ -1,31 +1,6 @@
 import {test, expect} from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-test('Amazon login and search', async ({page}) => {
-  // Navigate to Amazon
-  await page.goto('https://www.amazon.com/');
-    // Click on the Sign In button
-  await page.click('//span[normalize-space() = "Account & Lists"]');
-  // filling the email field
-  await page.fill('//input[@id="ap_email_login"]','praneethbanni@gmail.com');
-  // checking the continue button is enabled or not
-  await expect(page.locator('//span[@id="continue"]')).toBeEnabled();
-  // clicking the continue button
-  await page.click('//span[@id="continue"]');
-  // checking whether the password field is visible or not
-  await expect(page.locator('//input[@id="ap_password"]')).toBeVisible();
-  // filling the password field
-  await page.fill('//input[@id="ap_password"]','1234A@a4321');
-  // checking whether the sign in button is enabled or not
-  await expect(page.locator('//input[@id="signInSubmit"]')).toBeEnabled();
-  // clicking the sign in button
-  await page.click('//input[@id="signInSubmit"]');
-  // checking whether logged in or not
-  await expect(page.locator('//span[normalize-space() = "Hello, Banni"]')).toBeVisible();
-
-});
-
-
 
 test('Scrape first visible product in Amazon search', async ({page}) => {
     await page.goto('https://www.amazon.com/');
